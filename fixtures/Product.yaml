@@ -1,0 +1,12 @@
+parameters:
+    price_decimal: '<numberBetween(0, 100)>,<numberBetween(0, 60)>'
+
+App\Entity\Product:
+  product_{0..1000}:
+    name: '<word()>'
+    category: '<word()>'
+    price: '<{price_decimal}>'
+    taxRate: '90%? 21 : 10'
+    description: '<sentence()>'
+    stock: '<numberBetween(0, 200)>'
+    percentReduction: '30%? <numberBetween(5,30)> : 0'

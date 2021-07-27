@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ContactForm index{% endblock %}
+
+{% block body %}
+    <h1>ContactForm index</h1>
+    <!--https://v1.tailwindcss.com/components/forms#app-->
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Phone</th>
+                <th>Reason</th>
+                <th>Message</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contact_form in contact_forms %}
+            <tr>
+                <td>{{ contact_form.id }}</td>
+                <td>{{ contact_form.name }}</td>
+                <td>{{ contact_form.type }}</td>
+                <td>{{ contact_form.phone }}</td>
+                <td>{{ contact_form.reason }}</td>
+                <td>{{ contact_form.message }}</td>
+                <td>
+                    <a href="{{ path('contact_form_show', {'id': contact_form.id}) }}">show</a>
+                    <a href="{{ path('contact_form_edit', {'id': contact_form.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('contact_form_new') }}">Create new</a>
+{% endblock %}

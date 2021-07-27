@@ -1,0 +1,4 @@
+App\Entity\Bill:
+  bill_{0..1000}:
+    expeditionDate: '<dateTimeBetween("2019-1-1", "2021-05-05")>'
+    

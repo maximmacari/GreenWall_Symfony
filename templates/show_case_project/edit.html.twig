@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ShowCaseProject{% endblock %}
+
+{% block body %}
+    <h1>Edit ShowCaseProject</h1>
+
+    {{ include('show_case_project/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('show_case_project_index') }}">back to list</a>
+
+    {{ include('show_case_project/_delete_form.html.twig') }}
+{% endblock %}

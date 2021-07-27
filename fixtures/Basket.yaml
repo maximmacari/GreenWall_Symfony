@@ -1,0 +1,4 @@
+App\Entity\Basket:
+  basket_{0..1000}:
+    createDate: '<dateTimeBetween("2019-1-1", "2021-05-05")>'
+    

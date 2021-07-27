@@ -1,0 +1,11 @@
+parameters:
+    postal_code: '<numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)>'
+
+App\Entity\Direction:
+  direction_{0..1000}:
+    street: '<sentence()>'
+    number: '<numberBetween(1, 99)>'
+    floor: '<numberBetween(0, 30)> <randomElement(["a","b","c","d","e","f","g","h","i","j"])>'
+    postalCode: '<numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)>'
+    region: <word()>
+    other: <sentence()>

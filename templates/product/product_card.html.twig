@@ -1,0 +1,62 @@
+<div class="flex justify-center items-center bg-gray-100">
+	<div class="w-full p-2">
+		<div class="bg-white shadow-lg hover:shadow-xl rounded-bl-lg rounded-br-lg ">
+			<div class="bg-gray-400 h-64 p-4 bg-no-repeat bg-center bg-cover" style="background-image: url(https://loremflickr.com/400/340/iceream,book)">
+				{#<div class="text-right">
+					<button class="text-gray-300 hover:text-pink-500 p-2 rounded-full" style="background: rgba(0,0,0,0.3)">
+						 <svg class="w-6 h-6" viewbox="0 0 24 24">
+							<path fill="currentColor" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/>
+						</svg> 
+					</button>
+				</div>#}
+			</div>
+			<div class="flex justify-between items-start px-2 pt-2">
+				<div class="p-2 flex-grow">
+					<h1 class="text-gray-900 font-medium text-md-left font-poppins">{{product.name}}</h1>
+					<p class="text-gray-500 font-nunito">Short description here</p>
+				</div>
+				<div class="p-2 text-right">
+					{% if product.percentReduction != null %}
+						<div class="whitespace-nowrap font-bold">
+							<div class=" text-green-500 text-teal-500 text-lg font-poppins">{{ product.price * (1 - product.percentReduction / 100)|number_format(2)}}
+								<span class="text-gray-500 font-semibold text-sm">€</span>
+							</div>
+						</div>
+						<div class="whitespace-nowrap text-xs text-gray-500 line-through font-poppins">{{ product.price|number_format(2) }}
+							€</div>
+					{% else %}
+						<div class="whitespace-nowrap text-teal-500 font-semibold text-lg font-poppins">{{ product.price|number_format(2) }}
+							€</div>
+					{% endif %}
+				</div>
+			</div>
+			{% if product.percentReduction != null %}
+				<div class="mx-4 my-2 min-w-min inline-block">
+					<div class="text-xs font-normal bg-red-100 py-1 px-2 rounded text-red-500 align-middle">Discount
+						<span class="font-bold">{{ product.percentReduction }}%</span>
+					</div>
+				</div>
+			{% endif %}
+
+			<div class="flex justify-center items-center px-2 pb-2">
+				<div class="w-1/2 p-2">
+					<button class="block w-full bg-teal-500 hover:bg-teal-600 text-white px-3 py-2 rounded font-poppins font-medium hover:bg-green-500 text-gray-500 hover:text-white">
+						<svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5" viewbox="0 0 20 20" fill="currentColor">
+							<path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+							<path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+						</svg>
+						<a href="{{ path('product_show', {'id': product.id}) }}" class="">Details</a>
+					</button>
+				</div>
+				<div class="w-1/2 p-2">
+					<button class="block w-full text-white bg-green-500 hover:bg-green-400 transition duration-300 border-green-600 px-3 py-2 rounded font-poppins font-medium">
+						<svg xmlns="http://www.w3.org/2000/svg" class="inline h-5 w-5" viewbox="0 0 20 20" fill="currentColor">
+							<path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
+						</svg>
+						<a href="{#{path('')}#}">Add to Cart</a>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ShowCaseProject index{% endblock %}
+
+{% block body %}
+    <h1>ShowCaseProject index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Images</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for show_case_project in show_case_projects %}
+            <tr>
+                <td>{{ show_case_project.id }}</td>
+                <td>{{ show_case_project.name }}</td>
+                <td>{{ show_case_project.description }}</td>
+                <td>{{ show_case_project.images ? show_case_project.images|join(', ') : '' }}</td>
+                <td>
+                    <a href="{{ path('show_case_project_show', {'id': show_case_project.id}) }}">show</a>
+                    <a href="{{ path('show_case_project_edit', {'id': show_case_project.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('show_case_project_new') }}">Create new</a>
+{% endblock %}

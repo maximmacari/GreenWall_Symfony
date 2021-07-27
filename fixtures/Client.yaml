@@ -1,0 +1,46 @@
+#Parameters dont work
+parameters:
+  random_letter: <randomElement(["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","z"])>
+  phoneNumber: 'randomElement([6,9])<numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)>'
+  corporate_nif: '<randomElement(["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","z"])><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)>'
+  outdoors_nif: '<randomElement(["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","z"])><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><randomElement(["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","z"])>'
+
+#Corporate
+App\Entity\Client:
+  client_{0..400}:
+    name: '<firstName()> <lastName()>'
+    email: '<email()>'
+    password: '<firstName()><lastName()>'
+    direction: '@direction_<current()>'
+    phone: '<randomElement([6,9])><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)>'
+    type: 'Corporate'
+    state: 'Active'
+    nif: '<randomElement(["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","z"])><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)>'
+  client_{401..500}:
+    name: '<firstName()> <lastName()>'
+    email: '<email()>'
+    password: '<firstName()><lastName()>'
+    direction: '@direction_<current()>'
+    phone: '<randomElement([6,9])><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)>'
+    type: 'Corporate'
+    state: 'Banned'
+    nif: '<randomElement(["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","z"])><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)>'
+#RetailCustomer
+  client_{501..900}:
+    name: '<firstName()> <lastName()>'
+    email: '<email()>'
+    password: '<firstName()><lastName()>'
+    direction: '@direction_<current()>'
+    phone: '<randomElement([6,9])><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)>'
+    type: 'RetailCustomer'
+    state: 'Active'
+    nif: '<randomElement(["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","z"])><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><randomElement(["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","z"])>'
+  client_{901..1000}:
+    name: '<firstName()> <lastName()>'
+    email: '<email()>'
+    password: '<firstName()><lastName()>'
+    direction: '@direction_<current()>'
+    phone: '<randomElement([6,9])><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)>'
+    type: 'RetailCustomer'
+    state: 'Banned'
+    nif: '<randomElement(["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","z"])><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><randomElement(["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","z"])>'

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>GreenWall</title>
+
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-16x16.png')}}"/>
+		{# Run `composer require symfony/webpack-encore-bundle`and uncomment the following Encore helpers to start using Symfony UX #}
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{#{{ encore_entry_script_tags('app') }}#}
+		{% endblock %}
+	</head>
+	<body>
+		{% set route = app.request.get('_route') %}
+		{% set activeClass = 'py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold' %}
+		{% set nonActiveClass = 'py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300' %}
+		<!-- Navbar goes here -->
+		<nav class="bg-white shadow-lg">
+			<div class="max-w-6xl mx-auto px-4">
+				<div class="flex justify-between">
+					<div class="flex space-x-7">
+						<div>
+							<!-- Website Logo -->
+							<a href="{{path('home')}}" class="flex items-center py-4 px-2">
+								{{ include('icon.svg') }}
+								<span class="font-semibold text-lg text-green-500">GreenWall</span>
+							</a>
+						</div>
+						<!-- Primary Navbar items -->
+						<div class="hidden md:flex items-center space-x-1">
+							<a href="{{path('home')}}" class="{{ 'home' in route ? activeClass : nonActiveClass}}">Home</a>
+							<a href="{{path('show_case_project_index')}}" class="{{ 'show' in route ? activeClass : nonActiveClass}}">Projects</a>
+							<a href="{{path('product_index')}}" class="{{'product' in route ? activeClass : nonActiveClass}}">Products</a>
+							<a href="{{path('contact_form_index')}}" class="inline-flex items-center text-center {{'contact' in route ? activeClass : nonActiveClass}}">About us</a>
+						</div>
+					</div>
+					<!-- Secondary Navbar items -->
+					<div class="hidden md:flex items-center space-x-3 ">
+						<a href="{#{path('')}#}" class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300">Log In</a>
+						<a href="{#{path('')}#}" class="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300">Sign Up</a>
+					</div>
+					<!-- Mobile menu button -->
+					<div class="md:hidden flex items-center">
+						<button class="outline-none mobile-menu-button">
+							<svg class=" w-6 h-6 text-gray-500 hover:text-green-500 " x-show="!showMenu" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" stroke="currentColor">
+								<path d="M4 6h16M4 12h16M4 18h16"></path>
+							</svg>
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- mobile menu -->
+			<div class="hidden mobile-menu">
+				{% set activeClassMobile = 'text-white bg-green-500 font-semibold' %}
+				{% set nonActiveClassMobile = 'hover:bg-green-500' %}
+				<ul>
+					<li><a href="{{path('home')}}" class="{{ 'home' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Home</a></li>
+					<li><a href="{{path('show_case_project_index')}}" class="{{'show' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Projects</a></li>
+					<li><a href="{{path('product_index')}}" class="{{'product' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Products</a></li>
+					<li><a href="{{path('contact_form_index')}}" class="{{'contact' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Contact Us</a></li>
+					<li><a href="{#{path('')}#}" class="{{'log' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Log In</a></li>
+				</ul>
+			</div>
+			<script>
+				const btn = document.querySelector("button.mobile-menu-button");
+				const menu = document.querySelector(".mobile-menu");
+				btn.addEventListener("click", () => {
+					menu.classList.toggle("hidden");
+				});
+			</script>
+		</nav>
+		<div class="flex min-h-screen flex-col justify-between container mx-auto mx-12 my-6"> 
+		{% block body %}{% endblock %}
+		{% block footer %}{% endblock %}
+			<!--General footer-->
+			
+		</div>
+		{% include 'base_footer.html.twig' %}
+	</body>
+</html>
+
+
+{# <div class="dropdown inline-block relative ">
+								<button href="{{path('contact_form_index')}}" class="inline-flex items-center text-center {{'contact' in route ? activeClass : nonActiveClass}}">
+									<span>About us</span>
+									<svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20">
+										<path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+									</svg>
+								</button>
+								<ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
+									<li class="">
+										<a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">One</a>
+									</li>
+									<li class="">
+										<a class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Two</a>
+									</li>
+									<li class="">
+										<a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Three is the magic number</a>
+									</li>
+								</ul>
+							</div> #}
