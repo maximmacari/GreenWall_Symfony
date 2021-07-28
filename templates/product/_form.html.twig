@@ -1,4 +1,54 @@
+{% set rowStyle = "" %}
+{#template#}
+
+{% set labelStyle = "block text-gray-700 text-sm font-bold mb-1 pb-1" %}
+{% set errorStyle = "text-red-500 text-xs italic" %}
+{% set helpStyle = "text-blue-500 text-xs italic" %}
+{% set widgetStyle = "shadow appearance-none border border-grey-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" %}
+
+{% set form_primitive_input = 
+    {
+    row_class: rowStyle,
+    label_class: labelStyle,
+    error_item_class: errorStyle,
+    widget_class: widgetStyle,
+    widget_errors_class: errorStyle,
+    }
+ %}
+
+{% block body %}
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+	<div class="col product-form">
+		{{ form_errors(form) }}
+		<div class="px-4">
+			<div class="row">
+				{{ form_row(form.name, form_primitive_input) }}
+			</div>
+			<div class="row">
+				{{ form_row(form.price, form_primitive_input) }}
+			</div>
+			<div class="row">
+				{{ form_row(form.category, form_primitive_input) }}
+			</div>
+			<div class="row">
+				{{ form_row(form.taxRate, form_primitive_input) }}
+			</div>
+			<div class="row">
+				{{ form_row(form.description, form_primitive_input) }}
+			</div>
+			<div class="row">
+				{{ form_row(form.stock, form_primitive_input) }}
+			</div>
+			<div class="row">
+				{{ form_row(form.percentReduction, form_primitive_input) }}
+			</div>
+			<div
+				class="flex justify-between mx-2 my-1">
+				{# don't render unrendered fields #}
+				{{ form_end(form)}}
+			</div>
+		</div>
+	</div>
 {{ form_end(form) }}
+
+{% endblock %}

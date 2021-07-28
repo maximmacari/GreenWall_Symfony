@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
+#https://symfony.com/doc/current/controller/upload_file.html
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
  */
@@ -56,6 +58,11 @@ class Product
      * @ORM\Column(type="array")
      */
     private $images = [];
+
+    public function getRetailPrice(): ?string {
+        $retailPrice = $this->price * (1 - $this->percentReduction / 100);
+        return number_format($retailPrice, 2, ',', ' ');
+    }
 
     public function getId(): ?int
     {

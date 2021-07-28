@@ -1,54 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product index
-{% endblock %}
-
 {% block body %}
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 		{% for product in products %}
+			{% for i in 0..10 %}
 			{# <div class="flex justify-center text-6xl border-2 border-gray-300 rounded-xl p-6 bg-gray-100 bg-gradient-to-r from-purple-700 to-purple-500">{{ i }}</div> #}
-            {% include "product/product_card.html.twig" with {'product': product } %}
+			{% include "product/product_card.html.twig" with {'product': product } %}
+			{% endfor %}
 		{% endfor %}
 	</div>
-
-
-	{# <table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Name</th>
-				<th>Category</th>
-				<th>Price</th>
-				<th>TaxRate</th>
-				<th>Description</th>
-				<th>Stock</th>
-				<th>PercentReduction</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for product in products %}
-				<tr>
-					<td>{{ product.id }}</td>
-					<td>{{ product.name }}</td>
-					<td>{{ product.category }}</td>
-					<td>{{ product.price }}</td>
-					<td>{{ product.taxRate }}</td>
-					<td>{{ product.description }}</td>
-					<td>{{ product.stock }}</td>
-					<td>{{ product.percentReduction }}</td>
-					<td>
-						<a href="{{ path('product_show', {'id': product.id}) }}">show</a>
-						<a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="9">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-
-	<a href="{{ path('product_new') }}">Create new</a> #}
 {% endblock %}
+
+{#<a href="{{ path('product_new') }}">Create new</a> #}

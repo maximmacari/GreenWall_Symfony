@@ -2,7 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    @apply bg-gray-100;
+.btn {
+    @apply text-white font-medium rounded-lg mx-2 my-1;
+}
+  
+.btn-cancel {
+    @apply whitespace-nowrap py-2 px-2 bg-red-500 rounded hover:bg-red-400 transition duration-300;
+}
+  
+.btn-accept {
+    @apply whitespace-nowrap py-2 px-2 bg-green-500 rounded hover:bg-green-400 transition duration-300;
 }
 
+.btn-return {
+    @apply whitespace-nowrap py-2 px-2 bg-blue-500 rounded hover:bg-blue-400 transition duration-300;
+}

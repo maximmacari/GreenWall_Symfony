@@ -1,20 +1,64 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Hello HomeController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	<div class="items-center flex flex-wrap">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/madri/OneDrive/Desktop/Symfony_Php/GreenWall/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/madri/OneDrive/Desktop/Symfony_Php/GreenWall/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+		<div class="flex relative mb-6 bg-green-50 ">
+			<span class="absolute z-40 font-semibold align-middle justify-center text-center inset-x-1/4 -translate-x-2/4 uppercase text-7xl text-white">discover the vertical garden</span>
+			<img class="mix-blend-multiply  rounded block w-screen h-full object-cover" src="{{ asset('images/home/background.jpg')}}" alt="">
+		</div>
+
+		<div class="w-full md:w-4/12 ml-auto mr-auto px-4"><img alt="proyect" class="max-w-full rounded-lg shadow-lg" src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80"></div>
+		<div class="w-full md:w-5/12 ml-auto mr-auto px-4">
+			<div class="md:pr-12">
+				<div class="text-green-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-green-300">
+					<i class="fas fa-rocket text-xl"></i>
+				</div>
+				<h3 class="text-3xl font-semibold">A growing company</h3>
+				<p class="mt-4 text-lg leading-relaxed text-blueGray-500">The extension comes with three pre-built pages to help you get started faster. You can change the text and images and you're good to go.</p>
+				<ul class="list-none mt-6">
+					<li class="py-2">
+						<div class="flex items-center">
+							<div>
+								<span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-green-600 bg-green-200 mr-3">
+									<i class="fas fa-fingerprint"></i>
+								</span>
+							</div>
+							<div>
+								<h4 class="text-blueGray-500">Carefully crafted components</h4>
+							</div>
+						</div>
+					</li>
+					<li class="py-2">
+						<div class="flex items-center">
+							<div>
+								<span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-green-600 bg-green-200 mr-3">
+									<i class="fab fa-html5"></i>
+								</span>
+							</div>
+							<div>
+								<h4 class="text-blueGray-500">Amazing page examples</h4>
+							</div>
+						</div>
+					</li>
+					<li class="py-2">
+						<div class="flex items-center">
+							<div>
+								<span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-green-600 bg-green-200 mr-3">
+									<i class="far fa-paper-plane"></i>
+								</span>
+							</div>
+							<div>
+								<h4 class="text-blueGray-500">Dynamic components</h4>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 {% endblock %}
