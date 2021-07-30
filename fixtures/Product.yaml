@@ -1,12 +1,69 @@
 parameters:
-    price_decimal: '<numberBetween(0, 100)>,<numberBetween(0, 60)>'
+    price_decimal: ''
+    random_category: '<numberBetween(1,5)>'
+
+App\Entity\Category:
+  category_1:
+    name: "Green Walls"
+  category_2:
+    name: "Flat moss"
+  category_3:
+    name: "Moss decoration"
+  category_4:
+    name: "Pillow Moss"
+  category_5:
+    name: "Reindeer Moss"
 
 App\Entity\Product:
-  product_{0..1000}:
+  product_{0..249}:
     name: '<word()>'
-    category: '<word()>'
-    price: '<{price_decimal}>'
+    price: '<numberBetween(0, 100)>,<numberBetween(0, 60)>'
     taxRate: '90%? 21 : 10'
+    categories: '[@category_1]'
+    weight: '<numberBetween(0.250 , 30)>' 
     description: '<sentence()>'
     stock: '<numberBetween(0, 200)>'
     percentReduction: '30%? <numberBetween(5,30)> : 0'
+
+  product_{250..499}:
+    name: '<word()>_<current()>'
+    price: '<numberBetween(0, 100)>,<numberBetween(0, 60)>'
+    taxRate: '90%? 21 : 10'
+    categories: '[@category_3]'
+    weight: '<numberBetween(0.250 , 30)>' 
+    description: '<sentence()>'
+    stock: '<numberBetween(0, 200)>'
+    percentReduction: '30%? <numberBetween(5,30)> : 0'
+
+  product_{500..749}:
+    name: '<word()>_<current()>'
+    price: '<numberBetween(0, 100)>,<numberBetween(0, 60)>'
+    taxRate: '90%? 21 : 10'
+    categories: '[@category_4]'
+    weight: '<numberBetween(0.250 , 30)>' 
+    description: '<sentence()>'
+    stock: '<numberBetween(0, 200)>'
+    percentReduction: '30%? <numberBetween(5,30)> : 0'
+
+  product_{750..900}:
+    name: '<word()>_<current()>'
+    price: '<numberBetween(0, 100)>,<numberBetween(0, 60)>'
+    taxRate: '90%? 21 : 10'
+    categories: '[@category_5]'
+    weight: '<numberBetween(0.250 , 30)>' 
+    description: '<sentence()>'
+    stock: '<numberBetween(0, 200)>'
+    percentReduction: '30%? <numberBetween(5,30)> : 0'
+
+  product_{900..1000}:
+    name: '<word()>_<current()>'
+    price: '<numberBetween(0, 100)>,<numberBetween(0, 60)>'
+    taxRate: '90%? 21 : 10'
+    categories: '[@category_2]'
+    weight: '<numberBetween(0.250 , 30)>' 
+    description: '<sentence()>'
+    stock: '<numberBetween(0, 200)>'
+    percentReduction: '30%? <numberBetween(5,30)> : 0'
+  
+    
+    

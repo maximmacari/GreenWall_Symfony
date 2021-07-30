@@ -1,14 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-		{% for product in products %}
-			{% for i in 0..10 %}
-			{# <div class="flex justify-center text-6xl border-2 border-gray-300 rounded-xl p-6 bg-gray-100 bg-gradient-to-r from-purple-700 to-purple-500">{{ i }}</div> #}
-			{% include "product/product_card.html.twig" with {'product': product } %}
-			{% endfor %}
-		{% endfor %}
+
+
+	<div class="flex align-middle">
+		<div class="flex-none w-1/5 bg-green-50">
+			<form action="/" method="GET">
+				<div class="py-2 px-auto text-center">
+					<button class="btn btn-accept" type="submit">Show result</button>
+				</div>
+				{#all categories#}
+				{% include "product/category_accordion.html.twig" with {'title': "Types" } %}
+			</form>
+		</div>
+		<div class="flex-1">
+			<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
+				{% for product in products %}
+					{% for i in 0..10 %}
+						{# <div class="flex justify-center text-6xl border-2 border-gray-300 rounded-xl p-6 bg-gray-100 bg-gradient-to-r from-purple-700 to-purple-500">{{ i }}</div> #}
+						{% include "product/product_card.html.twig" with {'product': product } %}
+					{% endfor %}
+				{% endfor %}
+			</div>
+		</div>
 	</div>
+
+
 {% endblock %}
 
 {#<a href="{{ path('product_new') }}">Create new</a> #}

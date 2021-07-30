@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 #https://symfony.com/doc/5.4/doctrine/registration_form.html
+#https://symfony.com/doc/5.4/security/authenticator_manager.html
 
 class RegistrationFormType extends AbstractType
 {

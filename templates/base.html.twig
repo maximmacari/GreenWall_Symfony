@@ -12,6 +12,7 @@
 		</title>
 		
 		<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-16x16.png')}}"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		{# <link rel="stylesheet" href="{{ asset('my_styles/style.css') }}"> #}
 		{# Run `composer require symfony/webpack-encore-bundle`and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
@@ -22,12 +23,12 @@
 			{#{{ encore_entry_script_tags('app') }}#}
 		{% endblock %}
 	</head>
-	<body>
+	<body class="bg-gray-50">
 		{% set route = app.request.get('_route') %}
 		{% set activeClass = 'py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold' %}
 		{% set nonActiveClass = 'py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300' %}
 		<!-- Navbar goes here -->
-		<nav class="bg-white shadow-lg">
+		<nav class="bg-white shadow-lg sticky top-0 z-50">
 			<div class="max-w-6xl mx-auto px-4">
 				<div class="flex justify-between">
 					<div class="flex space-x-7">
@@ -81,7 +82,8 @@
 				});
 			</script>
 		</nav>
-		<div class="flex min-h-screen flex-col justify-between container mx-auto mx-12 my-6"> 
+
+				<div class="flex min-h-screen flex-col justify-between container mx-auto mx-2 my-2"> 
 		{% block body %}{% endblock %}
 		{% block footer %}{% endblock %}
 			<!--General footer-->

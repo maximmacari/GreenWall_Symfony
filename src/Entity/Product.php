@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 
@@ -24,10 +26,6 @@ class Product
      */
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=40)
-     */
-    private $category;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2)
@@ -57,7 +55,24 @@ class Product
     /**
      * @ORM\Column(type="array")
      */
-    private $images = [];
+    private $images;
+
+    /**
+     * @ORM\Column(type="decimal", precision=6, scale=2, nullable=true)
+     */
+    private $Weight;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="products")
+     */
+    private $categories;
+
+    
+
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
 
     public function getRetailPrice(): ?string {
         $retailPrice = $this->price * (1 - $this->percentReduction / 100);
@@ -81,17 +96,7 @@ class Product
         return $this;
     }
 
-    public function getCategory(): ?string
-    {
-        return $this->category;
-    }
-
-    public function setCategory(string $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
+   
 
     public function getPrice(): ?string
     {
@@ -166,6 +171,46 @@ class Product
     }
 
     public function __toString(){
-        return "caca";
+        return $this->name;
+    }
+
+    public function getWeight(): ?string
+    {
+        return $this->Weight;
+    }
+
+    public function setWeight(?string $Weight): self
+    {
+        $this->Weight = $Weight;
+
+        return $this;
+    }
+
+    public function removeCategory(category $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            // set the owning side to null (unless already changed)
+            if ($category->getProducts() === $this) {
+                $category->setProducts(null);
+            }
+        }
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+        }
+
+        return $this;
     }
 }

@@ -1,0 +1,36 @@
+
+	<div class="w-full md:w-4/12 ml-auto mr-auto">
+		<img alt="proyect" class="max-w-full rounded-lg shadow-lg" src="{{image_src}}">
+	</div>
+	<div class="w-full md:w-5/12 ">
+		<div class="md:pr-12">
+			<div class="flex flex-row space space-x-6">
+
+				<div class="text-green-600 p-3 text-center  inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-{{ color }}-300"></div>
+				<h3 class="inline-block text-3xl font-semibold align-bottom">
+					{% block title %}A growing company
+					{% endblock %}
+				</h3>
+			</div>
+
+			<p class="mt-4 text-lg leading-relaxed text-blueGray-500">
+				{% block description %}The extension comes with three pre-built pages to help you get started faster. You can change the text and images and you're good to go.
+				{% endblock %}
+			</p>
+			<ul class="list-none mt-6">
+				{% for point in bulletPoints %}
+					<li class="py-2">
+						<div class="flex items-center">
+							<div>
+								<span class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full bg-{{ color }}-200 mr-3 "></span>
+							</div>
+							<div>
+								<h4 class="text-blueGray-500">{{ point }}</h4>
+							</div>
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+

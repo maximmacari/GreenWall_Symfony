@@ -17,7 +17,7 @@
  %}
 
 {% block body %}
-{{ form_start(form) }}
+	{{ form_start(form) }}
 	<div class="col product-form">
 		{{ form_errors(form) }}
 		<div class="px-4">
@@ -27,9 +27,15 @@
 			<div class="row">
 				{{ form_row(form.price, form_primitive_input) }}
 			</div>
-			<div class="row">
-				{{ form_row(form.category, form_primitive_input) }}
-			</div>
+
+			{{ form_errors(form.categories) }}
+			<ul>
+				{% for category in form.categories %}
+					<li>{{ form_row(category) }}</li>
+				{% endfor %}
+			</ul>
+
+
 			<div class="row">
 				{{ form_row(form.taxRate, form_primitive_input) }}
 			</div>
@@ -47,8 +53,11 @@
 				{# don't render unrendered fields #}
 				{{ form_end(form)}}
 			</div>
-		</div>
-	</div>
-{{ form_end(form) }}
 
+		</div>
+		{{ form_end(form) }}
+	</div>
+
+
+	<script></script>
 {% endblock %}
