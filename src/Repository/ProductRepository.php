@@ -19,6 +19,9 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
+
+##https://www.doctrine-project.org/projects/doctrine-orm/en/2.9/reference/query-builder.html
+
     // /**
     //  * @return Product[] Returns an array of Product objects
     //  */

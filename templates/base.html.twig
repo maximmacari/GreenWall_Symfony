@@ -44,13 +44,13 @@
 							<a href="{{path('home')}}" class="{{ 'home' in route ? activeClass : nonActiveClass}}">Home</a>
 							<a href="{{path('show_case_project_index')}}" class="{{ 'show' in route ? activeClass : nonActiveClass}}">Projects</a>
 							<a href="{{path('product_index')}}" class="{{'product' in route ? activeClass : nonActiveClass}}">Products</a>
-							<a href="{{path('contact_form_index')}}" class="inline-flex items-center text-center {{'contact' in route ? activeClass : nonActiveClass}}">About us</a>
+							<a href="{{path('contact_form_new')}}" class="inline-flex items-center text-center {{'contact' in route ? activeClass : nonActiveClass}}">About us</a>
 						</div>
 					</div>
 					<!-- Secondary Navbar items -->
 					<div class="hidden md:flex items-center space-x-3 ">
-						<a href="{#{path('')}#}" class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300">Log In</a>
-						<a href="{#{path('')}#}" class="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300">Sign Up</a>
+						<a href="{{path('app_login')}}" class="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300">Log In</a>
+						<!--<a href="{#{path('')}#}" class="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300">Sign Up</a>-->
 					</div>
 					<!-- Mobile menu button -->
 					<div class="md:hidden flex items-center">
@@ -71,7 +71,7 @@
 					<li><a href="{{path('show_case_project_index')}}" class="{{'show' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Projects</a></li>
 					<li><a href="{{path('product_index')}}" class="{{'product' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Products</a></li>
 					<li><a href="{{path('contact_form_index')}}" class="{{'contact' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Contact Us</a></li>
-					<li><a href="{#{path('')}#}" class="{{'log' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Log In</a></li>
+					<li><a href="{{path('app_login')}}" class="{{'log' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Log In</a></li>
 				</ul>
 			</div>
 			<script>
@@ -85,9 +85,8 @@
 
 				<div class="flex min-h-screen flex-col justify-between container mx-auto mx-2 my-2"> 
 		{% block body %}{% endblock %}
-		{% block footer %}{% endblock %}
 			<!--General footer-->
-			
+		{% block footer %}{% endblock %}	
 		</div>
 		{% include 'base_footer.html.twig' %}
 	</body>
