@@ -1,0 +1,10 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends "bundles/TwigBundle/Exception/error.html.twig" %}
+
+
+{% block statusCode %}
+	{{status_code}}
+{% endblock %}
+{% block statusText %}
+	{{status_text}}
+{% endblock %}

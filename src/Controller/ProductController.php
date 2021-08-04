@@ -14,20 +14,29 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/product')]
 class ProductController extends AbstractController
 {
-    #[Route('/', name: 'product_index', methods: ['GET'])]
-    public function index(ProductRepository $productRepository): Response
+    #[Route('/{page}', name: 'product_index', methods: ['GET'], defaults: ['page' => 1], requirements: ["page" => "\d+"])]
+    public function index(ProductRepository $productRepository, $page = 1): Response
     {
+
+        $products = $productRepository->findByCategoryFilter($page);
+
+        dump($products);
+
         return $this->render('product/index.html.twig', [
-            'products' => $productRepository->findAll(),
+            'products' => $products,
+            'page' => $page,
+            'totalPages' => ceil(count($products) / 24),
+            #'categories' => $selectedCategories
         ]);
     }
 
 
     #[Route('/{category}', name: 'product_category', methods: ['GET'])]
     public function category(Category $category, ProductRepository $productRepository): Response
-    {   return $this->render('product/index.html.twig', [
+    {
+        return $this->render('product/index.html.twig', [
             'productos' => $productRepository->findBy(),
-            'subcategoria'=>$category
+            'subcategoria' => $category
         ]);
     }
 
@@ -54,9 +63,16 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'product_show', methods: ['GET'])]
-    public function show(Product $product): Response
+    #[Route('/show/{id}', name: 'product_show', requirements: ['page' => '\d+'], methods: ['GET'])]
+    public function show(Int $id, ProductRepository $pr): Response
     {
+
+        $product = $pr->find($id);
+
+        if (!$product) {
+            throw $this->createNotFoundException("Product does not exist.");
+        }
+
         return $this->render('product/show.html.twig', [
             'product' => $product,
         ]);
@@ -83,7 +99,7 @@ class ProductController extends AbstractController
     #[Route('/{id}', name: 'product_delete', methods: ['POST'])]
     public function delete(Request $request, Product $product): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($product);
             $entityManager->flush();

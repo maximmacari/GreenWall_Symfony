@@ -1,4 +1,4 @@
-<div class="bg-gray-200">
+<div class="bg-gradient-to-t from-gray-200">
 	<div class="max-w-6xl m-auto text-gray-800 flex flex-wrap justify-center">
 		<div class="p-5 w-48 ">
 			<div class="text-xs uppercase text-gray-500 font-medium">Resources</div>
@@ -61,8 +61,8 @@
 			</span>
 		</div>
 	</div>
-	<div class="bg-gray-200 divide-y divide-gray-300">
-		<div class=" text-sm mt-2 text-gray-500 pb-6">© Copyright 2021. All Rights Reserved.</div>
+	<div class="bg-gray-200">
+		<div class="ml-4 text-sm mt-2 text-gray-500 pb-6">© Copyright 2021. All Rights Reserved.</div>
 	</div>
 </div>
 
@@ -76,10 +76,10 @@
 		<div class="lg:flex lg:space-x-5">
 			<p class="font-thin text-gray-600 mt-1">
 				Este sitio web utiliza cookies para que usted tenga la mejor experiencia de usuario. Si continúa navegando está dando su consentimiento para la aceptación de las mencionadas cookies y la aceptación de nuestra política de cookies,
-				<a href="" class="font-medium no-underline hover:underline text-green-700">pinche el enlace para mayor información.</a>
+				<a href="{{ path('cookie_policy') }}" class="font-medium no-underline hover:underline text-green-700">pinche el enlace para mayor información.</a>
 			</p>
 			<div class="flex justify-end mx-2 my-1">
-				<button onclick="collapseCookieInformation()" class="whitespace-nowrap py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300">
+				<button onclick="collapseCookieInformation()" class="whitespace-nowrap btn btn-accept">
 					<span>I agree</span>
 				</button>
 			</div>

@@ -3,29 +3,80 @@
 {% block body %}
 
 
-	<div class="flex align-middle">
-		<div class="flex-none w-1/5 bg-green-50">
-			<form action="/" method="GET">
-				<div class="py-2 px-auto text-center">
-					<button class="btn btn-accept" type="submit">Show result</button>
-				</div>
-				{#all categories#}
-				{% include "product/category_accordion.html.twig" with {'title': "Types" } %}
-			</form>
-		</div>
-		<div class="flex-1">
-			<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
-				{% for product in products %}
-					{% for i in 0..10 %}
-						{# <div class="flex justify-center text-6xl border-2 border-gray-300 rounded-xl p-6 bg-gray-100 bg-gradient-to-r from-purple-700 to-purple-500">{{ i }}</div> #}
+	{# <h2>page:
+				{{page}}
+		
+				| Products:
+				{{ products|length }}</h2> #}
+	<div class="container">
+		<div class="flex align-middle">
+			<div class="flex-none w-1/5 bg-green-50">
+				<form action="/" method="GET">
+					<div class="py-2 px-auto text-center">
+						<button class="btn btn-accept" type="submit">Show result</button>
+					</div>
+					{#all categories#}
+					{% include "product/category_accordion.html.twig" with {'title': "Types" } %}
+				</form>
+			</div>
+			<div class="flex-1">
+				<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+					{% for product in products %}
 						{% include "product/product_card.html.twig" with {'product': product } %}
 					{% endfor %}
-				{% endfor %}
+				</div>
 			</div>
 		</div>
+
+		<!--Paginator-->
+
+		<div class="flex row justify-center m-6 ">
+			<ul class="flex space-x-1">
+				{% if 1 < totalPages %}
+					{% if page > 1 %}
+						<li class="inline py-1 px-2 ">
+							<a class="page-link" href="{{path('product_index', {page: 1})}}" tabindex="-1">First</a>
+						</li>
+						<li class="inline py-1 pt-2">
+							<a class="page-link" href="{{path('product_index', {page: page - 1})}}" tabindex="-1">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+								</svg>
+							</a>
+						</li>
+					{% endif %}
+
+					<!--Show 6 in total3 in each side-->
+					{% for currentPage in range(0,totalPages - 1, 1)|slice(page > 3 ? (page - 3) : 1, 7) %}
+						{% if currentPage == page %}
+							<li class="inline py-1 px-2 border-b-2 border-green-500 font-bold">
+								<a class="page-link" href="{{path('product_index', {page: currentPage})}}">{{ currentPage }}
+								</a>
+							</li>
+						{% else %}
+							<li class="inline py-1 px-2 ">
+								<a class="page-link" href="{{path('product_index', {page: currentPage})}}">{{ currentPage }}</a>
+							</li>
+						{% endif %}
+					{% endfor %}
+
+					{% if page < totalPages %}
+
+						<li class="inline py-1 pt-2">
+							<a class="page-link" href="{{path('product_index', {page: page + 1})}}" tabindex="-1">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+								</svg>
+							</a>
+						</li>
+						<li class="inline py-1 px-2">
+							<a class="page-link" href="{{path('product_index', {page: totalPages})}}">Last ({{totalPages}})</a>
+						</li>
+					{% endif %}
+				{% endif %}
+			</ul>
+		</div>
 	</div>
-
-
 {% endblock %}
 
 {#<a href="{{ path('product_new') }}">Create new</a> #}

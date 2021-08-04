@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
@@ -22,22 +23,29 @@ class ProductRepository extends ServiceEntityRepository
 
 ##https://www.doctrine-project.org/projects/doctrine-orm/en/2.9/reference/query-builder.html
 
-    // /**
-    //  * @return Product[] Returns an array of Product objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function findByCategoryFilter($page)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+        $queryBuilder = $this->createQueryBuilder('p')
+            ->setFirstResult(24 * ($page - 1)) // offset
+            ->setMaxResults(24)
+            
         ;
+
+       
+        /* for ($i=0; $i < count($selectedCategories); $i++) { 
+            $queryBuilder = $queryBuilder
+            ->andWhere('p.category = :val')
+            ->setParameter('val', $selectedCategories[$i]);
+        } */
+
+        $query = $queryBuilder->getQuery();
+
+        dump($query);
+
+        return new Paginator($query);
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Product
