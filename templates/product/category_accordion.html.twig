@@ -15,57 +15,17 @@
 	</button>
 
 
-	<div id="list" class="space-y-1 text-gray-700 hidden m-2 ">
-	
-		<label class="flex justify-start items-start">
-			<div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
-				<input type="checkbox" class="opacity-0 absolute">
-				<svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewbox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
-			</div>
-			<div class="select-none">Flat Moss</div>
-		</label>
-        
-
-        
-		<label class="flex justify-start items-start">
-			<div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
-				<input type="checkbox" class="opacity-0 absolute">
-				<svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewbox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
-			</div>
-			<div class="select-none">For walls</div>
-		</label>
-        
-
-        
-		<label class="flex justify-start items-start">
-			<div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
-				<input type="checkbox" class="opacity-0 absolute">
-				<svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewbox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
-			</div>
-			<div class="select-none">Moss Decoration</div>
-		</label>
-        
-
-        
-		<label class="flex justify-start items-start">
-			<div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
-				<input type="checkbox" class="opacity-0 absolute">
-				<svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewbox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
-			</div>
-			<div class="select-none">Pillow Moss</div>
-		</label>
-        
-
-        
-		<label class="flex justify-start items-start">
-			<div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
-				<input type="checkbox" class="opacity-0 absolute">
-				<svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewbox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
-			</div>
-			<div class="select-none">Reindeer Moss</div>
-		</label>
-        
-
+	<div id="list" class="space-y-1 text-gray-700 hidden m-2" data-user="{{categories|join(',')}}">
+		{% for category in categories %}
+			<label class="flex justify-start items-start">
+				<div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
+				<!--|replace({' ':'_'})-->
+					<input id="{{category}}" type="checkbox" class="opacity-0 absolute">
+					<svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewbox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+				</div>
+				<div class="select-none">{{category}}</div>
+			</label>
+		{% endfor %}
 	</div>
 </div>
 <script>
@@ -76,21 +36,21 @@ var icon = document.getElementById("icon");
 icon.classList.toggle("-rotate-180");
 
 }
+
+function getCheckedCategories() {
+	var element = document.getElementById('list');
+    var categories = element.getAttribute('data-user').split(',');
+	var checkedCategories = [];
+	for (var i = 0; i < categories.length; i++) {
+		console.log("category:" + categories[i]);
+		var spare = document.getElementById(categories[i]);
+		if (spare.checked) {
+			checkedCategories.push(categories[i]);
+		}
+	}
+	console.log("checked categories: " + checkedCategories);
+	return checkedCategories;
+}
+
+
 </script>
-
-
-	{# <span class="block space-x-1"><input type="radio" id="" name="option" value="Flat Moss">
-			<label for="html">Flat Moss</label>
-		</span>
-		<span class="block space-x-1"><input type="radio" id="" name="option" value="For walls">
-			<label for="css">For walls</label>
-		</span>
-		<span class="block space-x-1"><input type="radio" id="" name="option" value="Moss Decoration">
-			<label for="javascript">Moss Decoration</label>
-		</span>
-		<span class="block space-x-1"><input type="radio" id="" name="option" value="Pillow Moss">
-			<label for="javascript">Pillow Moss</label>
-		</span>
-		<span class="block space-x-1"><input type="radio" id="" name="option" value="Reindeer Moss">
-			<label for="javascript"></label>
-		</span> #}

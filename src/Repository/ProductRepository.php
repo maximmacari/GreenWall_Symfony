@@ -6,6 +6,8 @@ use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\ORM\Query\Expr;
+
 
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
@@ -27,16 +29,24 @@ class ProductRepository extends ServiceEntityRepository
     public function findByCategoryFilter($page)
     {
         $queryBuilder = $this->createQueryBuilder('p')
+            ###->setParameter('name', "Green wall")
+            ##->setParameter('name1', "Flat moss")
+            ->innerJoin('p.categories', 'c')
+            ->addSelect('c')
+            ->andWhere('c.name LIKE :name OR c.name LIKE :name1')
+            ->setParameter('name', "Flat moss")
+            ->setParameter('name1', "Green Walls")
             ->setFirstResult(24 * ($page - 1)) // offset
             ->setMaxResults(24)
-            
         ;
 
        
-        /* for ($i=0; $i < count($selectedCategories); $i++) { 
+      /*   for ($i=0; $i < count($selectedCategories); $i++) { 
             $queryBuilder = $queryBuilder
-            ->andWhere('p.category = :val')
-            ->setParameter('val', $selectedCategories[$i]);
+            ->andWhere('p.categories', 'c')
+            ->addSelect('c')
+            ->andWhere('c.name LIKE :name')
+            ->setParameter('val', '%'.$selectedCategories[$i].'%');
         } */
 
         $query = $queryBuilder->getQuery();

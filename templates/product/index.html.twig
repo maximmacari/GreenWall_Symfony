@@ -13,7 +13,9 @@
 			<div class="flex-none w-1/5 bg-green-50">
 				<form action="/" method="GET">
 					<div class="py-2 px-auto text-center">
-						<button class="btn btn-accept" type="submit">Show result</button>
+						<button onclick="applyFilter()" class="btn btn-accept" type="button">
+						
+						Show result</button>
 					</div>
 					{#all categories#}
 					{% include "product/category_accordion.html.twig" with {'title': "Types" } %}
@@ -77,6 +79,20 @@
 			</ul>
 		</div>
 	</div>
+
+	<script>
+
+	function applyFilter(){
+		let categories = getCheckedCategories();
+		const route = "{{ path('product_index', {page: '1', categories: "+categories+"})|escape('js') }}";
+		//window.location.href = route;
+		//todo categories filter
+	}
+	
+</script>
 {% endblock %}
+
+
+
 
 {#<a href="{{ path('product_new') }}">Create new</a> #}

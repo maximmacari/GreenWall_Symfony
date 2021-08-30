@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Entity\Category;
 use App\Form\ProductType;
+use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     #[Route('/{page}', name: 'product_index', methods: ['GET'], defaults: ['page' => 1], requirements: ["page" => "\d+"])]
-    public function index(ProductRepository $productRepository, $page = 1): Response
+    public function index(CategoryRepository $cr ,ProductRepository $productRepository, $page = 1): Response
     {
 
         $products = $productRepository->findByCategoryFilter($page);
@@ -25,6 +26,7 @@ class ProductController extends AbstractController
         return $this->render('product/index.html.twig', [
             'products' => $products,
             'page' => $page,
+            'categories' => $cr->getCategories(),
             'totalPages' => ceil(count($products) / 24),
             #'categories' => $selectedCategories
         ]);
