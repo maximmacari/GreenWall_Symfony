@@ -1,11 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New ContactForm{% endblock %}
+{% block title %}New ContactForm
+{% endblock %}
 
 {% block body %}
-    <h1>Create new ContactForm</h1>
 
-    {{ include('contact_form/_form.html.twig') }}
 
-    <a href="{{ path('contact_form_index') }}">back to list</a>
+	<div class="relative transform m-2">
+		<div class="m-0 m-auto w-full lg:w-2/5 md:w-2/3">
+			<form method="post">
+				<div class="shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+					{{ include('contact_form/_form.html.twig') }}
+				</div>
+				<button class="btn btn-accept">{{ button_label|default('Save') }}</button>
+			</form>
+		</div>
+	</div>
+
+
 {% endblock %}

@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ShowCaseProjectsRepository;
+use App\Repository\ShowCaseProjectRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ShowCaseProjectsRepository::class)
+ * @ORM\Entity(repositoryClass=ShowCaseProjectRepository::class)
  */
 class ShowCaseProject
 {

@@ -99,7 +99,7 @@ class Client
         return $this;
     }
 
-     public function getDirection(): Direction
+     public function getDirection(): ? Direction
     {
         return $this->direction;
     }

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\ContactForm;
+use Doctrine\Common\Annotations\Annotation\Required;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -24,9 +25,12 @@ class ContactFormType extends AbstractType
             ])
             ->add('type', ChoiceType::class, [
                 'choices' => [
-                    clientType
+                    'Retail customer' => "RetailCustomer",
+                    'Corporate' => "Corporate"
                 ],
-                'required' => 'true',
+                'required' => 'true'
+                ,
+                'label' => 'From a'
             ])
             ->add('phone',  IntegerType::class, [
                 'attr' => [
@@ -40,22 +44,7 @@ class ContactFormType extends AbstractType
             ])
             ->add('message', TextareaType::class, [
                 'required' => 'true',
-            ])
-            ->add('direction', DirectionType::class)
-            ->add('Back', ButtonType::class, [
-                'label' => 'Back to list',
-                'attr' => [
-                    "class" => "btn btn-return",
-                ]
-            ])
-            ->add('Send', SubmitType::class, [
-                'label' => 'Save',
-                'attr' => [
-                    "class" => "btn btn-accept",
-                ]
-            ])
-            
-            ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -66,15 +55,9 @@ class ContactFormType extends AbstractType
     }
 }
 
-
-const clientType = [
-    'Company' => "COMPANY",
-    'Retail customer' => "RETAIL_CUSTOMER"
-];
-
 const formReason = [
+    "Be attended by a professional" => 'Bussines',
     "I want to sugest a feature" => 'Feature',
     "I want to report a bug" => 'Bug',
-    "Be attended by a professional" => 'Bussines',
     "Other" => 'Other'
 ];

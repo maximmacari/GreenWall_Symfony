@@ -1,37 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ShowCaseProject index{% endblock %}
+{% block title %}ShowCaseProject index
+{% endblock %}
 
 {% block body %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Images</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for show_case_project in show_case_projects %}
-            <tr>
-                <td>{{ show_case_project.id }}</td>
-                <td>{{ show_case_project.name }}</td>
-                <td>{{ show_case_project.description }}</td>
-                <td>{{ show_case_project.images ? show_case_project.images|join(', ') : '' }}</td>
-                <td>
-                    <a href="{{ path('show_case_project_show', {'id': show_case_project.id}) }}">show</a>
-                    <a href="{{ path('show_case_project_edit', {'id': show_case_project.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<div class="container m-4">
+		<div class="align-middle m-auto mx-0">
+			<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+				{% for show_case_project in show_case_projects %}
+					<div class="mx-auto h-70 mx-2">
+						<div class="relative w-96 min-h-full bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl">
+							<a href="{{ path('show_case_project_show', {'id': show_case_project.id}) }}">
+								<div
+									class="flex w-full h-full items-center justify-center">
+									{#<div
+																												class="flex h-5/6 ">
+																												{% for image in show_case_project.images %}
+																																							<div class="slide relative flex-auto bg-cover bg-center transition-all duration-500 ease-in-out hover:flex-grow" style="background-image:url('https://images.unsplash.com/photo-1533468432434-200de3b5d528?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80')"></div>
+																												                                            {% endfor %}#}
+									<img class="cursor-pointer" src="https://images.unsplash.com/photo-1577982787983-e07c6730f2d3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=859&q=80" alt="img"/>
+								</div>
 
-    <a href="{{ path('show_case_project_new') }}">Create new</a>
+							</a>
+							<div class="p-5 ">
+								<a href="{{ path('show_case_project_show', {'id': show_case_project.id}) }}">
+									<h1 class="cursor-pointer text-2xl font-bold">{{ show_case_project.name }}</h1>
+								</a>
+								<p class="mt-1 text-gray-500 font-">{{ show_case_project.description }}</p>
+							</div>
+							{#<p>{{ show_case_project.images ? show_case_project.images|join(', ') : '' }}</p>#}
+							<a class="absolute bottom-0 right-0  rounded-full m-2 bg-white hover:bg-green-400 p-2" href="{{ path('show_case_project_edit', {'id': show_case_project.id}) }}">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewbox="0 0 20 20" fill="currentColor">
+									<path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/>
+								</svg>
+							</a>
+						</div>
+					</div>
+				{% else %}
+					<p colspan="5">no records found</p>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+
+	<a href="{{ path('show_case_project_new') }}">Create new</a>
 {% endblock %}
