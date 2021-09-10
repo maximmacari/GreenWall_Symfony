@@ -62,3 +62,51 @@ input:checked + svg {
 .slide:hover {
     flex: 5;
 }
+
+.input-text{
+    @apply shadow appearance-none bg-gray-200 border rounded w-full border-gray-200 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-500;
+}
+
+.hide-5 {
+    -moz-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Opera */
+    animation: cssAnimation 0s ease-in 5s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+@keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        overflow:hidden;
+    }
+    0%   {opacity: 1;}
+    50%  {opacity: 0.5;}
+    100% {opacity: 0;}
+}
+@-webkit-keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        overflow:hidden;
+    }
+    0%   {opacity: 1;}
+    50%  {opacity: 0.5;}
+    100% {opacity: 0;}
+}
+
+/* Hide arrows for input number*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}

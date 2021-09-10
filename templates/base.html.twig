@@ -10,7 +10,7 @@
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
-		
+
 		<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-16x16.png')}}"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		{# <link rel="stylesheet" href="{{ asset('my_styles/style.css') }}"> #}
@@ -40,7 +40,7 @@
 							</a>
 						</div>
 						<!-- Primary Navbar items -->
-						
+
 						<div class="hidden md:flex items-center space-x-1">
 							<a href="{{path('home')}}" class="{{ 'home' in route ? activeClass : nonActiveClass}}">Home</a>
 							<a href="{{path('show_case_project_index')}}" class="{{ 'project' in route ? activeClass : nonActiveClass}}">Projects</a>
@@ -68,26 +68,28 @@
 				{% set activeClassMobile = 'text-white bg-green-500 font-semibold' %}
 				{% set nonActiveClassMobile = 'hover:bg-green-500' %}
 				<ul>
-					<li><a href="{{path('home')}}" class="{{ 'home' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Home</a></li>
-					<li><a href="{{path('show_case_project_index')}}" class="{{ 'show' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Projects</a></li>
-					<li><a href="{{path('product_index')}}" class="{{ 'product' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Products</a></li>
-					<li><a href="{{path('contact_form_index')}}" class="{{ 'contact' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Contact Us</a></li>
-					<li><a href="{{path('app_login')}}" class="{{ 'log' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Log In</a></li>
+					<li><ahref="{{path('home')}}"class="{{ 'home' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Home</a></li>
+					<li><ahref="{{path('show_case_project_index')}}"class="{{ 'show' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Projects</a></li>
+					<li><ahref="{{path('product_index')}}"class="{{ 'product' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Products</a></li>
+					<li><ahref="{{path('contact_form_index')}}"class="{{ 'contact' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Contact Us</a></li>
+					<li><ahref="{{path('app_login')}}"class="{{ 'log' in route ? activeClassMobile:nonActiveClassMobile}} block text-sm px-2 py-4">Log In</a></li>
 				</ul>
 			</div>
 			<script>
 				const btn = document.querySelector("button.mobile-menu-button");
-				const menu = document.querySelector(".mobile-menu");
-				btn.addEventListener("click", () => {
-					menu.classList.toggle("hidden");
-				});
+const menu = document.querySelector(".mobile-menu");
+btn.addEventListener("click", () => {
+menu.classList.toggle("hidden");
+});
 			</script>
 		</nav>
 
-				<div class="flex min-h-screen flex-col justify-between container mx-auto mx-2 my-2"> 
-		{% block body %}{% endblock %}
+		{% include 'flash_message.html.twig' %}	
+		<div class="flex min-h-screen flex-col container mx-auto mx-2 my-2">
+		
+			{% block body %}{% endblock %}
 			<!--General footer-->
-		{% block footer %}{% endblock %}	
+			{% block footer %}{% endblock %}
 		</div>
 		{% include 'footer.html.twig' %}
 	</body>

@@ -20,6 +20,9 @@ class OrderType extends AbstractType
                     'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
                 ],
                 'format' => 'dd-MM-yyyy',
+                'attr' => [
+                    'class' => 'input-text'
+                ],
             ])
             ->add('status')
             ->add('price')

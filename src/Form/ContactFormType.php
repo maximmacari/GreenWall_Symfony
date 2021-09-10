@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,28 +23,46 @@ class ContactFormType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'required' => 'true',
+                'attr' => [
+                    'class' => 'input-text'
+                ],
+            ])
+            ->add('email', EmailType::class, [
+                'attr' => [
+                    'class' => 'input-text'
+                ],
+            ])
+            ->add('phone',  IntegerType::class, [
+                'attr' => [
+                    'pattern' => '[0-9]{3}-[0-9]{2}-[0-9]{3}',
+                    'class' => 'input-text'
+                ],
+                'required' => 'true',
             ])
             ->add('type', ChoiceType::class, [
                 'choices' => [
                     'Retail customer' => "RetailCustomer",
                     'Corporate' => "Corporate"
                 ],
+                'attr' => [
+                    'class' => 'input-text'
+                ],
                 'required' => 'true'
                 ,
                 'label' => 'From a'
             ])
-            ->add('phone',  IntegerType::class, [
-                'attr' => [
-                    'pattern' => '[0-9]{3}-[0-9]{2}-[0-9]{3}'
-                ],
-                'required' => 'true',
-            ])
             ->add('reason', choiceType::class, [
                 'choices' => formReason,
                 'required' => 'true',
+                'attr' => [
+                    'class' => 'input-text'
+                ],
             ])
             ->add('message', TextareaType::class, [
                 'required' => 'true',
+                'attr' => [
+                    'class' => 'input-text'
+                ],
             ]);
     }
 

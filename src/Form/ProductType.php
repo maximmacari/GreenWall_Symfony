@@ -34,14 +34,23 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('images', FileType::class, [
-                'multiple' => true
+                'multiple' => true, 'attr' => [
+                    'class' => 'input-text'
+                ],
             ])
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, [
+                'attr' => [
+                    'class' => 'input-text'
+                ],
+            ])
             ->add('categories', EntityType::class, [
                 'class' => Category::class,
                 'multiple' => true,
                 'expanded' => true,
                 'choices' => $this->categoryRepository->getCategories(),
+                'attr' => [
+                    'class' => 'input-text'
+                ],
             ])
             ->add(
                 'price',
@@ -50,7 +59,7 @@ class ProductType extends AbstractType
                     /*     'required' => $options['require_price']
                 , */
                     'currency' => "",
-                    'attr' => array('min' => 0.1, 'max' => 9999)
+                    'attr' => [array('min' => 0.1, 'max' => 9999), 'class' => 'input-text']
                 ]
             )
             ->add('taxRate', ChoiceType::class, [
@@ -58,14 +67,21 @@ class ProductType extends AbstractType
                     'Normal 21%' => 21,
                     'Reduced 10%' => 10,
                     'Super Reduced 4%' => 4,
-                ]
+                ],
+                'attr' => [
+                    'class' => 'input-text'
+                ],
             ])
-            ->add('description', TextareaType::class)
+            ->add('description', TextareaType::class, [
+                'attr' => [
+                    'class' => 'input-text'
+                ],
+            ])
             ->add('stock', IntegerType::class, [
-                'attr' => array('min' => 0, 'max' => 999),
+                'attr' => [array('min' => 0.1, 'max' => 9999), 'class' => 'input-text']
             ])
             ->add('percentReduction', IntegerType::class, [
-                'attr' => array('min' => 0, 'max' => 70),
+                'attr' => [array('min' => 0.1, 'max' => 9999), 'class' => 'input-text']
             ])
             /*  ->add('images', FileType::class, [
                 'attr' => array('multiple' => true)

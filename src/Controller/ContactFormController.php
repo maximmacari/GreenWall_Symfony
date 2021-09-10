@@ -30,10 +30,16 @@ class ContactFormController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($contactForm);
-            $entityManager->flush();
+            try{
+                $entityManager->persist($contactForm);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('contact_form_index', [], Response::HTTP_SEE_OTHER);
+                $this->addFlash('success', 'Form has been sent!');
+                return $this->redirectToRoute('contact_form_new', [], Response::HTTP_SEE_OTHER);
+            }
+            catch(\Exception $e){
+                $this->addFlash('failure', $e->getMessage());
+            }
         }
 
         return $this->renderForm('contact_form/new.html.twig', [

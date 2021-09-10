@@ -22,19 +22,30 @@ class ClientType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, [
+                'attr' => [
+                    'class' => 'input-text'
+                ],
+            ])
             ->add('email', EmailType::class, [
                 'constraints' => [
                     new NotBlank(['message' => 'This cannot be empty']),
                     new Email([
                         'message' => "The email '{{ value }}' is not a valid email",
-                    ])
-            ]])
+                    ]),
+                    
+                ],
+                'attr' => [
+                    'class' => 'input-text'
+                ],
+            ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => ['autocomplete' => 'new-password',
+                'class' => 'input-text'],
+                
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -47,15 +58,30 @@ class ClientType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('phone', IntegerType::class)
+            ->add('phone', IntegerType::class, [
+                'attr' => [
+                    'class' => 'input-text'
+                ],
+            ])
             ->add('type', ChoiceType::class, [
                 'choices' => [
                     'Corporate' => "Corporate",
                     'Retail customer' => "RetailCustomer"
-                ]
+                ],
+                'attr' => [
+                    'class' => 'input-text'
+                ],
             ])
-            ->add('nif', TextType::class)
-            ->add('direction', DirectionType::class);
+            ->add('nif', TextType::class, [
+                'attr' => [
+                    'class' => 'input-text'
+                ],
+            ])
+            ->add('direction', DirectionType::class, [
+                'attr' => [
+                    'class' => 'input-text'
+                ]
+            ]);
             /*->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [

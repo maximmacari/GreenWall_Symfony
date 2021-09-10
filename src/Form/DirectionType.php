@@ -13,21 +13,44 @@ class DirectionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('street',TextType::class,[
+            ->add(
+                'street',
+                TextType::class,
+                [
                     'required' => 'true',
+                    'attr' => [
+                        'class' => 'input-text'
+                    ],
                 ],
             )
             ->add('number', IntegerType::class, [
                 'required' => 'true',
+                'attr' => [
+                    'class' => 'input-text'
+                ],
             ])
-            ->add('floor', TextType::class, [])
+            ->add('floor', TextType::class, [
+                'attr' => [
+                    'class' => 'input-text'
+                ],
+            ])
             ->add('postalCode', TextType::class, [
                 'required' => 'true',
+                'attr' => [
+                    'class' => 'input-text'
+                ],
             ])
             ->add('region', TextType::class, [
                 'required' => 'true',
+                'attr' => [
+                    'class' => 'input-text'
+                ],
             ])
-            ->add('other', TextType::class);
+            ->add('other', TextType::class, [
+                'attr' => [
+                    'class' => 'input-text'
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

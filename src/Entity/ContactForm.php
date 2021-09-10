@@ -28,11 +28,6 @@ class ContactForm
     private $type;
 
     /**
-     * @ORM\OneToOne(targetEntity=Direction::class, cascade={"persist", "remove"})
-     */
-    private $direction;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $phone;
@@ -46,6 +41,11 @@ class ContactForm
      * @ORM\Column(type="string", length=255)
      */
     private $message;
+
+    /**
+     * @ORM\Column(type="string", length=80)
+     */
+    private $email;
 
     public function getId(): ?int
     {
@@ -72,18 +72,6 @@ class ContactForm
     public function setType(string $type): self
     {
         $this->type = $type;
-
-        return $this;
-    }
-
-    public function getDirection(): ?Direction
-    {
-        return $this->direction;
-    }
-
-    public function setDirection(?Direction $direction): self
-    {
-        $this->direction = $direction;
 
         return $this;
     }
@@ -120,6 +108,17 @@ class ContactForm
     public function setMessage(string $message): self
     {
         $this->message = $message;
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

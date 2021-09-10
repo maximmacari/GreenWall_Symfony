@@ -1,11 +1,11 @@
 App\Entity\ContactForm:
   contactform_{0..80}:
-    name: '<word()> word() word()'
+    name: '<word()> <word()> <word()>'
     type: '<randomElement(["Corporate", "RetailCustomer"])>'
-    direction: '@direction_<current()>'
     phone: '<randomElement([6,9])><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)><numberBetween(0, 9)>'
     reason: '<randomElement(["Bussines", "Rrecommendation", "Bug report", "Information"])>'
     message: '<sentence()>'
+    email: '<email()>'
 
 
     

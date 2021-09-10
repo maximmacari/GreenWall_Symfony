@@ -4,33 +4,37 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container m-0 p-0 h-100">
-		<div class="flex w-full h-full items-center justify-center">
-			<div class="flex w-5/6 h-96">
-				{% for image in show_case_project.images %}
-					<div class="h-full slide relative flex-auto bg-cover bg-center transition-all duration-500 ease-in-out hover:flex-grow" style="background-image:url('https://images.unsplash.com/photo-1533468432434-200de3b5d528?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80')">
-						<div class="h-5/6"></div>
-					</div>
-				{% endfor %}
+	<div class="container max-w-3xl m-0 m-auto border">
+		<div class="container m-0 p-0 h-full">
+			<div class="flex w-full h-full items-center justify-center">
+				<div class="flex w-full h-96">
+					{% for image in show_case_project.images %}
+						<div class="h-full slide relative flex-auto bg-cover bg-center transition-all duration-500 ease-in-out hover:flex-grow" style="background-image:url('https://images.unsplash.com/photo-1533468432434-200de3b5d528?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80')">
+							<div class="h-5/6"></div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<table class="table m-8">
+				<tbody>
+					<tr>
+						<th>{{ show_case_project.name }}</th>
+					</tr>
+					<tr>
+
+						<td>{{ show_case_project.description }}</td>
+					</tr>
+					<tr>
+
+						<td>{{ show_case_project.images ? show_case_project.images|join(', ') : '' }}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="m-8 p-8">
+				<a class="float-left btn btn-return" href="{{ path('show_case_project_index') }}">back to list</a>
+				<a class="float-right btn btn-accept" href="{{ path('show_case_project_edit', {'id': show_case_project.id}) }}">edit</a>
 			</div>
 		</div>
-		<table class="table">
-			<tbody>
-				<tr>
-					<th>{{ show_case_project.name }}</th>
-				</tr>
-				<tr>
-
-					<td>{{ show_case_project.description }}</td>
-				</tr>
-				<tr>
-
-					<td>{{ show_case_project.images ? show_case_project.images|join(', ') : '' }}</td>
-				</tr>
-			</tbody>
-		</table>
-		<a class="float-left btn btn-return" href="{{ path('show_case_project_index') }}">back to list</a>
-		<a class="float-right btn btn-accept" href="{{ path('show_case_project_edit', {'id': show_case_project.id}) }}">edit</a>
 	</div>
 	{{ include('show_case_project/_delete_form.html.twig') }}
 {% endblock %}
