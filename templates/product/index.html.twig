@@ -4,26 +4,29 @@
 
 
 	{# <h2>page:
-				{{page}}
-		
-				| Products:
-				{{ products|length }}</h2> #}
-	<div class="container">
+							{{page}}
+					
+							| Products:
+							{{ products|length }}</h2> #}
+	<div class="container m-0 m-auto w-5/6">
 		<div class="flex align-middle">
 			<div class="flex-none w-1/5 bg-green-50">
 				<form action="/" method="GET">
 					<div class="py-2 px-auto text-center">
 						<button onclick="applyFilter()" class="btn btn-accept" type="button">
-						Show result</button>
+							Show result</button>
 					</div>
 					{#all categories#}
 					{% include "product/category_accordion.html.twig" with {'title': "Types" } %}
+					
 				</form>
 			</div>
 			<div class="flex-1">
 				<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
 					{% for product in products %}
+
 						{% include "product/product_card.html.twig" with {'product': product } %}
+
 					{% endfor %}
 				</div>
 			</div>
@@ -81,17 +84,15 @@
 
 	<script>
 
-	function applyFilter(){
-		let categories = getCheckedCategories();
-		const route = "{{ path('product_index', {page: '1', categories: "+categories+"})|escape('js') }}";
-		//window.location.href = route;
-		//todo categories filter
-	}
-	
-</script>
+		function applyFilter() {
+let selectedCategories = getCheckedCategories();
+const route = "{{ path('product_index', {page: '1'}) }}?" + selectedCategories;
+console.log("route" + route)
+window.location.href = route;
+// todo categories filter
+}
+	</script>
 {% endblock %}
-
-
 
 
 {#<a href="{{ path('product_new') }}">Create new</a> #}

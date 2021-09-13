@@ -78,9 +78,6 @@ class ClientType extends AbstractType
                 ],
             ])
             ->add('direction', DirectionType::class, [
-                'attr' => [
-                    'class' => 'input-text'
-                ]
             ]);
             /*->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,

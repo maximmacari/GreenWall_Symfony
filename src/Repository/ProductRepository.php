@@ -26,28 +26,22 @@ class ProductRepository extends ServiceEntityRepository
 ##https://www.doctrine-project.org/projects/doctrine-orm/en/2.9/reference/query-builder.html
 
     
-    public function findByCategoryFilter($page)
+    public function findByCategoryFilter($page, $selectedCategories) 
     {
         $queryBuilder = $this->createQueryBuilder('p')
-            ###->setParameter('name', "Green wall")
-            ##->setParameter('name1', "Flat moss")
-            ->innerJoin('p.categories', 'c')
-            ->addSelect('c')
-            ->andWhere('c.name LIKE :name OR c.name LIKE :name1')
-            ->setParameter('name', "Flat moss")
-            ->setParameter('name1', "Green Walls")
             ->setFirstResult(24 * ($page - 1)) // offset
             ->setMaxResults(24)
         ;
 
-       
-      /*   for ($i=0; $i < count($selectedCategories); $i++) { 
-            $queryBuilder = $queryBuilder
-            ->andWhere('p.categories', 'c')
+        dump($selectedCategories);
+
+        if (count($selectedCategories) != 0) {
+            $queryBuilder
+            ->innerJoin('p.categories', 'c')
             ->addSelect('c')
-            ->andWhere('c.name LIKE :name')
-            ->setParameter('val', '%'.$selectedCategories[$i].'%');
-        } */
+            ->andWhere('c.name IN (:selectedCategories)')
+            ->setParameter('selectedCategories', array($selectedCategories));
+        }
 
         $query = $queryBuilder->getQuery();
 

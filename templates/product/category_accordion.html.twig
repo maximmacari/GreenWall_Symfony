@@ -1,56 +1,88 @@
 <div class="flex flex-col">
-	<button onclick="show()" type="button" class=" block bg-green-500 text-white text-sm shadow-border  hover:bg-green-dark p-2 font-bold">
+	<button onclick='show("list")' type="button" class="block bg-green-500 text-white text-sm shadow-border hover:bg-green-dark p-2 font-bold">
 		<div class="flex flex-row justify-between">
 			<span class="inline-block align-middle">
-				{% block title %}
-					{{title}}
-				{% endblock %}
+				Types
 			</span>
-			<div class="w-4 h-4 transition-transform transform duration-150 ease-in-out" id="icon">
+			<div class="w-4 h-4 transition-transform transform duration-150 ease-in-out" id="list-icon">
 				<svg xmlns="http://www.w3.org/2000/svg" classname="h-5 w-5" viewbox="0 0 20 20" fill="currentColor">
 					<path fill-rule="evenodd" d="M4.293 15.707a1 1 0 010-1.414l5-5a1 1 0 011.414 0l5 5a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414 0zm0-6a1 1 0 010-1.414l5-5a1 1 0 011.414 0l5 5a1 1 0 01-1.414 1.414L10 5.414 5.707 9.707a1 1 0 01-1.414 0z" cliprule="evenodd"/>
 				</svg>
 			</div>
 		</div>
 	</button>
-
-
 	<div id="list" class="space-y-1 text-gray-700 hidden m-2" data-user="{{categories|join(',')}}">
 		{% for category in categories %}
 			<label class="flex justify-start items-start">
-				<div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
-				<!--|replace({' ':'_'})-->
+				<div
+					class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
+					<!--|replace({' ':'_'})-->
 					<input id="{{category}}" type="checkbox" class="opacity-0 absolute">
-					<svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewbox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+					<svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewbox="0 0 20 20">
+						<path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
+					</svg>
 				</div>
 				<div class="select-none">{{category}}</div>
 			</label>
 		{% endfor %}
 	</div>
+
+	<button onclick='show("availability")' type="button" class="block bg-green-500 text-white text-sm shadow-border hover:bg-green-dark p-2 font-bold">
+		<div class="flex flex-row justify-between">
+			<span class="inline-block align-middle">
+				Availability
+			</span>
+			<div class="w-4 h-4 transition-transform transform duration-150 ease-in-out" id="availability-icon">
+				<svg xmlns="http://www.w3.org/2000/svg" classname="h-5 w-5" viewbox="0 0 20 20" fill="currentColor">
+					<path fill-rule="evenodd" d=" M4.293 15.707a1 1 0 010-1.414l5-5a1 1 0 011.414 0l5 5a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414 0zm0-6a1 1 0 010-1.414l5-5a1 1 0 011.414 0l5 5a1 1 0 01-1.414 1.414L10 5.414 5.707 9.707a1 1 0 01-1.414 0z" cliprule="evenodd"/>
+				</svg>
+			</div>
+		</div>
+	</button>
+	<div id="availability" class="space-y-1 text-gray-700 hidden m-2">
+		<label class="flex justify-start items-start">
+			<div
+				class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
+				<!--|replace({' ':'_'})-->
+				<input id="avalability" type="checkbox" class="opacity-0 absolute">
+				<svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewbox="0 0 20 20">
+					<path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
+				</svg>
+			</div>
+			<div class="select-none">On Stock</div>
+		</label>
+
+	</div>
 </div>
 <script>
-	function show() {
-var element = document.getElementById("list");
+	function show(optionsId) {
+var element = document.getElementById(optionsId);
 element.classList.toggle("hidden");
-var icon = document.getElementById("icon");
+var icon = document.getElementById(optionsId + "-icon");
 icon.classList.toggle("-rotate-180");
-
 }
 
 function getCheckedCategories() {
-	var element = document.getElementById('list');
-    var categories = element.getAttribute('data-user').split(',');
-	var checkedCategories = [];
-	for (var i = 0; i < categories.length; i++) {
-		console.log("category:" + categories[i]);
-		var spare = document.getElementById(categories[i]);
-		if (spare.checked) {
-			checkedCategories.push(categories[i]);
-		}
-	}
-	console.log("checked categories: " + checkedCategories);
-	return checkedCategories;
+var element = document.getElementById('list');
+var categories = element.getAttribute('data-user').split(',');
+var checkedCategories = [];
+var itemsString = "";
+for (var i = 0; i < categories.length; i++) {
+var spare = document.getElementById(categories[i]);
+if (spare.checked) {
+checkedCategories.push(categories[i]);
+}
+}
+for (var x = 0; x < checkedCategories.length; x++) {
+if (x == 0) {
+itemsString = "cat[]=" + checkedCategories[x].replace(" ", "%20");
+} else {
+itemsString = itemsString.concat("&cat[]=", checkedCategories[x].replace(" ", "%20"));
 }
 
+}
+// return string with items
+return itemsString;
 
+}
 </script>

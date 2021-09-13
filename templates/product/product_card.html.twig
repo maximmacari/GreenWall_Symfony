@@ -3,7 +3,8 @@
 		class="w-full bg-gray-50">
 		{#Image link#}
 		<div class="block justify-center h-56 bg-red-300">
-			<div class="object-none m-auto w-full h-full bg-gray-400 bg-no-repeat bg-center bg-cover" style="background-image: url(https://loremflickr.com/400/340/iceream,book)">				<a class="z-40" href="{{ path('product_show', {'id': product.id}) }}">
+			<div class="object-none m-auto w-full h-full bg-gray-400 bg-no-repeat bg-center bg-cover" style="background-image: url(https://loremflickr.com/400/340/iceream,book)">
+				<a class="z-40" href="{{ path('product_show', {'id': product.id}) }}">
 					<div class="w-full h-full"></div>
 				</a>
 			</div>
@@ -12,41 +13,43 @@
 		{#Title link#}
 
 		<div class="block justify-between items-start px-2 h-14">
-		<div class="flex justify-between">
-			<div class="p-2">
-				<h1 class="text-gray-900 font-medium text-md-left font-poppins">
-					<a href="{{ path('product_show', {'id': product.id}) }}">
-						{{product.name}}
-					</a>
-				</h1>
-				<p class="text-gray-500 font-nunito">{{ product.categories[0].name }}</p>
-			</div>
-			<div class="p-2 text-right">
-				{% if product.percentReduction != null %}
-					<div class="whitespace-nowrap font-bold">
-						<div class=" text-green-500 text-teal-500 text-lg font-poppins">{{ product.getRetailPrice }}
-							<span class="text-gray-500 font-semibold text-sm">€</span>
+			<div class="flex justify-between">
+				<div class="p-2">
+					<h1 class="text-gray-900 font-medium text-md-left font-poppins">
+						<a href="{{ path('product_show', {'id': product.id}) }}">
+							{{product.name}}
+						</a>
+					</h1>
+					<p class="text-gray-500 font-nunito">{{ product.categories[0].name }}</p>
+				</div>
+				<div class="p-2 text-right">
+					{% if product.percentReduction != null %}
+						<div class="whitespace-nowrap font-bold">
+							<div class=" text-green-500 text-teal-500 text-lg font-poppins">{{ product.getRetailPrice }}
+								<span class="text-gray-500 font-semibold text-sm">€</span>
+							</div>
 						</div>
-					</div>
-					<div class="whitespace-nowrap text-xs text-gray-500 line-through font-poppins">{{ product.price|number_format(2) }}
-						€</div>
-				{% else %}
-					<div class="whitespace-nowrap text-teal-500 font-semibold text-lg font-poppins">{{ product.price|number_format(2) }}
-						€</div>
-				{% endif %}
-			</div>
+						<div class="whitespace-nowrap text-xs text-gray-500 line-through font-poppins">{{ product.price|number_format(2) }}
+							€</div>
+					{% else %}
+						<div class="whitespace-nowrap text-teal-500 font-semibold text-lg font-poppins">{{ product.price|number_format(2) }}
+							€</div>
+					{% endif %}
+				</div>
 			</div>
 		</div>
-
 
 		<div class="block mx-4 my-1 min-w-min h-6">
 			{% if product.percentReduction != null %}
-				<div class="inline-block text-xs font-normal bg-red-100 py-1 px-2 rounded text-red-500 align-middle">Discount
+				<div class="border border-red-500 inline-block text-xs font-normal bg-red-100 py-1 px-2 rounded text-red-500 align-middle">Discount
 					<span class="font-bold">-{{ product.percentReduction }}%</span>
 				</div>
 			{% endif %}
+			{% if product.stock == 0 %}
+				<div class="border border-gray-500 inline-block text-xs font-normal bg-gray-100 py-1 px-2 rounded text-gray-500 align-middle">Out of Stock
+				</div>
+			{% endif %}
 		</div>
-
 
 		<div class="flex flex-row-reverse px-4 pb-1 h-10">
 			<div class="w-1/2">

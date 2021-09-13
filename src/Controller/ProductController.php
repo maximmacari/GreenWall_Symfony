@@ -15,20 +15,18 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/product')]
 class ProductController extends AbstractController
 {
-    #[Route('/{page}', name: 'product_index', methods: ['GET'], defaults: ['page' => 1], requirements: ["page" => "\d+"])]
-    public function index(CategoryRepository $cr ,ProductRepository $productRepository, $page = 1): Response
+    #[Route('/{page}', name: 'product_index', methods: ['GET'], defaults: ['page' => 1, 'selectedCategories' => []], requirements: ["page" => "\d+"])]
+    public function index(CategoryRepository $cr ,ProductRepository $productRepository, $page = 1, $selectedCategories = [], Request $request,): Response
     {
-
-        $products = $productRepository->findByCategoryFilter($page);
-
-        dump($products);
-
+        $selectedCategories = $request->query->get('cat') ?? [];
+        $products = $productRepository->findByCategoryFilter($page, $selectedCategories); 
+        
+        
         return $this->render('product/index.html.twig', [
             'products' => $products,
             'page' => $page,
             'categories' => $cr->getCategories(),
-            'totalPages' => ceil(count($products) / 24),
-            #'categories' => $selectedCategories
+            'totalPages' => ceil(count($products) / 24)
         ]);
     }
 
