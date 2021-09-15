@@ -26,7 +26,8 @@ class ProductController extends AbstractController
             'products' => $products,
             'page' => $page,
             'categories' => $cr->getCategories(),
-            'totalPages' => ceil(count($products) / 24)
+            'totalPages' => ceil(count($products) / 24),
+            'selectedCategories' => $selectedCategories
         ]);
     }
 
@@ -43,6 +44,7 @@ class ProductController extends AbstractController
     #[Route('/new', name: 'product_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product, [
             'require_price' => true,
@@ -81,6 +83,7 @@ class ProductController extends AbstractController
     #[Route('/{id}/edit', name: 'product_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Product $product): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
@@ -99,6 +102,7 @@ class ProductController extends AbstractController
     #[Route('/{id}', name: 'product_delete', methods: ['POST'])]
     public function delete(Request $request, Product $product): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($product);

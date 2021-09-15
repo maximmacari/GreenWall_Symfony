@@ -8,7 +8,7 @@
 }
   
 .btn-cancel {
-    @apply whitespace-nowrap py-2 px-2 bg-gradient-to-tl from-red-400 via-red-500 to-red-600 hover:from-red-500 hover:to-blue-600 hover:to-red-700 rounded transition duration-300;
+    @apply whitespace-nowrap py-2 px-2 bg-gradient-to-tl from-red-400 via-red-500 to-red-600 hover:from-red-500 hover:to-red-600 hover:to-red-700 rounded transition duration-300;
 }
   
 .btn-accept {
