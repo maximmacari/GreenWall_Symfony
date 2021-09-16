@@ -50,10 +50,13 @@
 					</div>
 					<!-- Secondary Navbar items -->
 					<div class="hidden md:flex items-center space-x-3 ">
-						{% if is_granted('ROLE_USER') %}
-							<a href="{{ path('app_logout') }}">Logout</a>
-						{% else %}
-							<a href="{{path('app_login')}}" class="btn btn-accept">Log In</a>	
+						{% if app.user %}
+    						{# user is logged in #}
+							<a class="btn btn-accept" href="{{ path('app_logout') }}">Logout</a>
+ 						{% else %}
+							{# user is not logged in#}
+							<a href="{{path('app_register')}}" class="whitespace-nowrap p-1.5 bg-gradient-to-tl border-2 border-green-600 hover:text-white hover:from-green-500 hover:via-green-600 hover:to-green-700 rounded transition duration-300 text-gray-500 font-bold">Register</a>	
+							<a href="{{path('app_login')}}" class="btn btn-accept">Login</a>	
 						{% endif %}
 					</div>
 					<!-- Mobile menu button -->

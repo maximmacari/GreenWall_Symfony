@@ -79,4 +79,11 @@ class BasketController extends AbstractController
 
         return $this->redirectToRoute('basket_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/client/{productID}', name: 'basket_add_product', methods: ['POST'])]
+    public function addProduct(Request $request, BasketRepository $basket): Response
+    {
+        here
+        return $this->redirectToRoute('basket_index', [], Response::HTTP_SEE_OTHER);
+    }
 }

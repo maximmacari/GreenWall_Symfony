@@ -44,8 +44,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
-    #[ORM\Column(options: ['default' => false])]
-    private $isVerified = false;
+    /**
+     * @ORM\OneToOne(targetEntity=Basket::class, inversedBy="user", cascade={"persist", "remove"})
+     */
+    private $basket;
 
     public function getId(): ?int
     {
@@ -143,6 +145,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getBasket(): ?Basket
+    {
+        return $this->basket;
+    }
+
+    public function setBasket(?Basket $basket): self
+    {
+        $this->basket = $basket;
 
         return $this;
     }

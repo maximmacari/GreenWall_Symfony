@@ -44,10 +44,8 @@ class EmailVerifier
     public function handleEmailConfirmation(Request $request, UserInterface $user): void
     {
         $this->verifyEmailHelper->validateEmailConfirmation($request->getUri(), $user->getId(), $user->getEmail());
-
         $user->setIsVerified(true);
         $user->setRoles(['ROLE_VERIFIED_USER']);
-
         $this->entityManager->persist($user);
         $this->entityManager->flush();
     }

@@ -4,33 +4,19 @@
 {% endblock %}
 
 {% block body %}
-	<div class="relative transform m-2">
+	<div class="relative transform translate-y-1/3 mx-2">
 		<div class="m-0 m-auto w-full lg:w-2/5 md:w-2/3">
+		<div class="shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+		<p class="text-center font-bold text-lg text-gray-500">Registration</p>
 			{{ form_start(registrationForm) }}
 			{{ form_row(registrationForm.email) }}
 			{{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-
 			{{ form_row(registrationForm.agreeTerms) }}
-
 			<button type="submit" class="float-right btn btn-accept">Register</button>
 			{{ form_end(registrationForm) }}
+			</div>
 		</div>
 	</div>
 {% endblock %}
-
-{#
-
-	<div class="relative transform m-2">
-		<div class="m-0 m-auto w-full lg:w-2/5 md:w-2/3">
-			<form method="post">
-				<div class="shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
-					{{ include('client/_form.html.twig') }}
-				</div>
-				<button class="float-right btn btn-accept">{{ button_label|default('Create') }}</button>
-			</form>
-
-		</div>
-	</div>
-#}

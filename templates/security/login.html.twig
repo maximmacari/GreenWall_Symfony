@@ -7,7 +7,7 @@
 	<div class="relative transform translate-y-1/3 mx-2">
 		<div class="m-0 m-auto w-full lg:w-2/5 md:w-2/3">
 			<form method="post">
-				
+
 
 				{% if app.user %}
 					<div class="mb-3">
@@ -18,6 +18,7 @@
 				{% endif %}
 
 				<div class="shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+					<p class="text-center font-bold text-lg text-gray-600">Login</p>
 					<div class="mb-4">
 						<label for="inputEmail" class="block text-gray-600 text-sm font-bold mb-2">
 							Email
@@ -33,12 +34,10 @@
 							<a class="mb-3 inline-block align-baseline font-light text-sm text-green-500 hover:text-green-700" href="#">Forgot password?</a>
 						</div>
 
-						{#</input type="hidden" name="_csrf_token"value="{{csrf_token('authenticate')}}"/>#}
-					</div>
+						<input type="hidden" name="_csrf_token" value="{{csrf_token('authenticate')}}"/>
 
-					{#
-																Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-																See https://symfony.com/doc/current/security/remember_me.html#}
+						
+					</div>
 					<div class="checkbox mb-3">
 						<label>
 							<input class="form-checkbox text-green-500" type="checkbox" name="_remember_me">
@@ -55,7 +54,7 @@
 					<div class="flex justify-center space-x-2 mt-4">
 						<span>Not a member yet?
 						</span>
-						<a href="{{ path('client_new') }}" class="text-green-500 hover:text-green-400 font-bold" type="button">
+						<a href="{{ path('app_register') }}" class="text-green-500 hover:text-green-400 font-bold" type="button">
 							Sign up now!
 						</a>
 					</div>

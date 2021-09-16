@@ -22,8 +22,9 @@ class RegistrationFormType extends AbstractType
                 'attr' => [
                     'class' => 'input-text'
                 ],
+                'error_bubbling' => false,
+                'label_attr' => ['class' => 'block text-gray-600 text-sm font-bold mb-2']
             ])
-
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -40,6 +41,8 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+                'label_attr' => ['class' => 'block text-gray-600 text-sm font-bold mb-2'],
+                'error_bubbling' => false
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -48,6 +51,8 @@ class RegistrationFormType extends AbstractType
                         'message' => 'You must agree to our terms.',
                     ]),
                 ],
+                'error_bubbling' => false,
+                'label_attr' => ['class' => 'block text-gray-600 text-sm font-bold']
             ]);
     }
 

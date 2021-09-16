@@ -20,7 +20,6 @@ class AuthenticationEntryPoint implements AuthenticationEntryPointInterface
     public function start(Request $request, AuthenticationException $authException = null): RedirectResponse
     {
         // add a custom flash message and redirect to the login page
-        $request->getSession()->getFlashBag()->add("warning", "You don't have permission to access that.");
         return new RedirectResponse($this->urlGenerator->generate('home'));
     }
 }
