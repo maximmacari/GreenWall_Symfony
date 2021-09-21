@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\BillRepository;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Integer;
 
 /**
  * @ORM\Entity(repositoryClass=BillRepository::class)
@@ -18,7 +19,7 @@ class Bill
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="integer")
      */
     private $ExpeditionDate;
 
@@ -27,12 +28,12 @@ class Bill
         return $this->id;
     }
 
-    public function getExpeditionDate(): ?\DateTimeInterface
+    public function getExpeditionDate(): ?int
     {
         return $this->ExpeditionDate;
     }
 
-    public function setExpeditionDate(\DateTimeInterface $ExpeditionDate): self
+    public function setExpeditionDate(int $ExpeditionDate): self
     {
         $this->ExpeditionDate = $ExpeditionDate;
 

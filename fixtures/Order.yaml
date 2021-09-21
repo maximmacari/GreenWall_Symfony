@@ -1,9 +1,11 @@
 parameters:
     price_decimal: '<numberBetween(50, 10000)>,<numberBetween(0, 60)>'
 
+
+
 App\Entity\Order:
   order_{0..1000}:
-    orderDate: '<dateTimeBetween("2019-1-1", "2021-05-05")>'
+    orderDate: '<numberBetween(1622242675, 1632242675)>'
     status: <randomElement(["Awaiting payment","Accepted", "Declined", "Cancelled", "Shipping in tansit"])>
     price: '<{price_decimal}>'
     paymentMethod: <randomElement(["Debit Card","Credit Card", "Mobile payment", "PayPal", "Bank transfer"])>
