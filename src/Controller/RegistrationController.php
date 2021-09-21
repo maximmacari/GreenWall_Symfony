@@ -71,9 +71,6 @@ class RegistrationController extends AbstractController
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request): Response
     {
-        
-
-        // validate email confirmation link, sets User::isVerified=true and persists
         try {
             $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
         } catch (VerifyEmailExceptionInterface $exception) {

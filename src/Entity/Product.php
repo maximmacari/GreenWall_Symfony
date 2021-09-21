@@ -67,6 +67,11 @@ class Product
      */
     private $categories;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Basket::class, inversedBy="products")
+     */
+    private $basket;
+
     
 
     public function __construct()
@@ -210,6 +215,32 @@ class Product
         if (!$this->categories->contains($category)) {
             $this->categories[] = $category;
         }
+
+        return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return
+            [
+                $this->getName(),
+                $this->getPrice(),
+                $this->getTaxRate(),
+                $this->getDescription(),
+                $this->getStock(),
+                $this->getPercentReduction(),
+                $this->getImages()
+            ];
+    }
+
+    public function getBasket(): ?Basket
+    {
+        return $this->basket;
+    }
+
+    public function setBasket(?Basket $basket): self
+    {
+        $this->basket = $basket;
 
         return $this;
     }

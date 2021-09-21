@@ -16,9 +16,16 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/cookies', name: 'cookie_policy')]
+    #[Route('/policy', name: 'policy')]
     public function cookiesPolicy(): Response
     {
-        return $this->render('cookie_policy.html.twig');
+        return $this->render('policy.html.twig', [
+            "companyId" => "ES0000000N",
+            "companyName" => "GreenWall SL",
+            'companyMobile' => "645962530",
+            'companyEmail' => 'green.wall.estore@gmail.com',
+            'companyDirection' => "Calle de la ficción e inexistente 46. Distrito de mentira, 28006. MADRID, España"
+
+        ]);
     }
 }

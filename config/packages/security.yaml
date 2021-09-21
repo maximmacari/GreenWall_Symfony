@@ -51,6 +51,7 @@ security:
         
         # ROLE_USER that is not yet a registered client
         - { path: '^/client/new' , roles: ROLE_USER }
+        - { path: '^/basket/product/\d+$' , roles: ROLE_USER }
         - { path: '^/client/', roles: PUBLIC_ACCESS } # client's profile
         - { path: '^/direction/', roles: PUBLIC_ACCESS } # client's direction
         - { path: '^/order/', roles: PUBLIC_ACCESS } # client's orders

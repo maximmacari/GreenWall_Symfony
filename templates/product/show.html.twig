@@ -5,7 +5,8 @@
 
 {% block body %}
 
-	<div class="container bg-white max-w-3xl m-0 mx-auto border py-6">
+	<div
+		class="container bg-white max-w-3xl m-0 mx-auto border py-6">
 
 		<!--images-->
 		<div class="flex w-full h-96">
@@ -69,7 +70,7 @@
 
 			<div>
 				<a class="float-left btn btn-return" href="{{ path('product_index') }}">back to list</a>
-				<a class="float-right btn btn-accept" href="{{ path('basket_add_product', {'productID': product.id}) }}">Add to Cart</a>
+				<a class="float-right btn btn-accept" href="{{ path('basket_add_product', {id: product.id}) }}">Add to Cart</a>
 			</div>
 		</div>
 	</div>

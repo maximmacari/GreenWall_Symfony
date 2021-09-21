@@ -51,6 +51,7 @@ class RegistrationFormType extends AbstractType
                         'message' => 'You must agree to our terms.',
                     ]),
                 ],
+                'label' => " ",
                 'error_bubbling' => false,
                 'label_attr' => ['class' => 'block text-gray-600 text-sm font-bold']
             ]);

@@ -79,15 +79,7 @@ class ClientType extends AbstractType
             ])
             ->add('direction', DirectionType::class, [
             ]);
-            /*->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-            ]);
-            */
+           
     }
 
 

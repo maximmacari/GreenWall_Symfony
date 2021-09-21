@@ -6,17 +6,20 @@
 {% block body %}
 	<div class="relative transform translate-y-1/3 mx-2">
 		<div class="m-0 m-auto w-full lg:w-2/5 md:w-2/3">
-		<div class="shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
-		<p class="text-center font-bold text-lg text-gray-500">Registration</p>
-			{{ form_start(registrationForm) }}
-			{{ form_row(registrationForm.email) }}
-			{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-			{{ form_row(registrationForm.agreeTerms) }}
-			<button type="submit" class="float-right btn btn-accept">Register</button>
-			{{ form_end(registrationForm) }}
+			<div class="shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+				<p class="text-center font-bold text-lg text-gray-500">Registration</p>
+				{{ form_start(registrationForm) }}
+				{{ form_row(registrationForm.email) }}
+				{{ form_row(registrationForm.plainPassword)}}
+				<div class="flex">
+					{{ form_row(registrationForm.agreeTerms) }}
+					<a class="underline font-thin text-green-600" href="{{path('policy')}}">Terms and condition</a>
+				</div>
+				<button type="submit" class="float-right btn btn-accept">Register</button>
+				{{ form_end(registrationForm) }}
 			</div>
 		</div>
 	</div>
+
+
 {% endblock %}

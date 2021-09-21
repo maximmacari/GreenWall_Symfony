@@ -20,23 +20,29 @@ class Basket
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="integer")
      */
     private $createDate;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Product::class)
-     */
-    private $products;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, mappedBy="basket", cascade={"persist", "remove"})
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $productsArr = [];
+
+   
+
+    
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->productsCollection = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -44,41 +50,18 @@ class Basket
         return $this->id;
     }
 
-    public function getCreateDate(): ?\DateTimeInterface
+    public function getCreateDate(): ?Int
     {
         return $this->createDate;
     }
 
-    public function setCreateDate(\DateTimeInterface $createDate): self
+    public function setCreateDate(Int $createDate): self
     {
         $this->createDate = $createDate;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Product[]
-     */
-    public function getProducts(): Collection
-    {
-        return $this->products;
-    }
-
-    public function addProduct(Product $product): self
-    {
-        if (!$this->products->contains($product)) {
-            $this->products[] = $product;
-        }
-
-        return $this;
-    }
-
-    public function removeProduct(Product $product): self
-    {
-        $this->products->removeElement($product);
-
-        return $this;
-    }
 
     public function getUser(): ?User
     {
@@ -101,4 +84,33 @@ class Basket
 
         return $this;
     }
+
+    private function getProductsArr(): ?array
+    {
+        return $this->productsArr;
+    }
+
+    private function setProductsArr(array $productsArr): self
+    {
+        $this->productsArr = $productsArr;
+
+        return $this;
+    }
+
+    
+
+    public function addProduct(Product $product): self {
+        #check if product is in array
+        if ($key = array_search($product, $this->getProductsArr()[0])){
+            #if it's in there, increment
+            array_push($this->getProductsArr(), [$product => $this->getProductsArr()[1] + 1]);
+        } else {
+            #if not added
+            array_push($this->getProductsArr(), [$product => 1]);
+        }  
+        return $this;
+    }
+    
+   
 }
+

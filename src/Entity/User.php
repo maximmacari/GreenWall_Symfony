@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -137,21 +138,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function isVerified(): bool
-    {
-        return $this->isVerified;
-    }
 
-    public function setIsVerified(bool $isVerified): self
-    {
-        $this->isVerified = $isVerified;
-
-        return $this;
-    }
 
     public function getBasket(): ?Basket
     {
+        if (is_null($this->basket)) {
+            $this->setBasket($this->createBasket());
+        }
         return $this->basket;
+    }
+
+    private function createBasket(): Basket
+    {
+        $basket = new Basket();
+        $datetime= new DateTime('Europe/Madrid');
+        $basket->setCreateDate($datetime->getTimestamp());
+        return $basket;
     }
 
     public function setBasket(?Basket $basket): self
